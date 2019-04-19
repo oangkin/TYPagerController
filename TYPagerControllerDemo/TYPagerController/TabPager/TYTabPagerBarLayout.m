@@ -35,7 +35,11 @@
     _cellEdging = 3;
     _cellWidth = 0;
     _progressHorEdging = 6;
-    _progressWidth = 0;
+    if (_delegate && [_delegate respondsToSelector:@selector(progressWidth:)]) {
+        self.progressWidth = [_delegate progressWidth:self];
+    } else  {
+        self.progressWidth = 0;
+    }
     _animateDuration = 0.25;
     
     _normalTextFont = [UIFont systemFontOfSize:15];
@@ -111,20 +115,37 @@
     _barStyle = barStyle;
     switch (barStyle) {
         case TYPagerBarStyleProgressView:
-            self.progressWidth = 0;
+            if (_delegate && [_delegate respondsToSelector:@selector(progressWidth:)]) {
+                self.progressWidth = [_delegate progressWidth:self];
+            } else  {
+                self.progressWidth = 0;
+            }
+            
+            
+        
             self.progressHorEdging = 6;
             self.progressVerEdging = 0;
             self.progressHeight = kUnderLineViewHeight;
             break;
         case TYPagerBarStyleProgressBounceView:
         case TYPagerBarStyleProgressElasticView:
-            self.progressWidth = 30;
+         
+            if (_delegate && [_delegate respondsToSelector:@selector(progressWidth:)]) {
+                self.progressWidth = [_delegate progressWidth:self];
+            } else  {
+                  self.progressWidth = 30;
+            }
             self.progressVerEdging = 0;
             self.progressHorEdging = 0;
             self.progressHeight = kUnderLineViewHeight;
             break;
         case TYPagerBarStyleCoverView:
-            self.progressWidth = 0;
+            if (_delegate && [_delegate respondsToSelector:@selector(progressWidth:)]) {
+                self.progressWidth = [_delegate progressWidth:self];
+            } else  {
+                  self.progressWidth = 0;
+            }
+         
             self.progressHorEdging = -self.progressHeight/4;
             self.progressVerEdging = 3;
             break;
