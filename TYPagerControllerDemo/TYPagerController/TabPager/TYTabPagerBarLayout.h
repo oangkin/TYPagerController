@@ -20,17 +20,8 @@ typedef NS_ENUM(NSUInteger, TYPagerBarStyle) {
 };
 
 
-@class TYTabPagerBarLayout;
-@protocol TYTabPagerBarLayoutDelegate <NSObject>
-@optional
-- (CGFloat)progressWidth:(TYTabPagerBarLayout *)layout;
-
-@end
-
-
 @class TYTabPagerBar;
 @interface TYTabPagerBarLayout : NSObject
-@property (nonatomic, assign) id<TYTabPagerBarLayoutDelegate> delegate;
 
 @property (nonatomic, weak, readonly) TYTabPagerBar *pagerTabBar;
 @property (nonatomic, assign, readonly) CGFloat selectFontScale;
